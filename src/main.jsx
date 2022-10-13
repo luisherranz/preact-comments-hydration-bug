@@ -25,5 +25,7 @@ setTimeout(() => {
 
   obs.disconnect();
 
+  window.hydrated.innerHTML = "Hydrated!";
+
   console.log(records);
 }, 1500);
