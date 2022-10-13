@@ -9,10 +9,18 @@ const App = () => {
   );
 };
 
-const obs = new MutationObserver((records) => {
-  console.log(records);
+let records = [];
+
+const obs = new MutationObserver((r) => {
+  records.push(...r);
 });
 
 obs.observe(window.root, { childList: true, subtree: true });
 
 hydrate(<App />, window.root);
+
+records.push(...obs.takeRecords());
+
+obs.disconnect();
+
+console.log(records)
