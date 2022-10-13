@@ -3,8 +3,8 @@ import { hydrate } from "preact";
 const App = () => {
   return (
     <div>
-      <div class="first-div">First div</div>
-      <div class="second-div">Second div</div>
+      <div class="first-div animation">Before the comment</div>
+      <div class="second-div animation">After the comment</div>
     </div>
   );
 };
@@ -17,10 +17,13 @@ const obs = new MutationObserver((r) => {
 
 obs.observe(window.root, { childList: true, subtree: true });
 
-hydrate(<App />, window.root);
+setTimeout(() => {
+  hydrate(<App />, window.root);
+  console.log("hydrated");
 
-records.push(...obs.takeRecords());
+  records.push(...obs.takeRecords());
 
-obs.disconnect();
+  obs.disconnect();
 
-console.log(records)
+  console.log(records);
+}, 1500);

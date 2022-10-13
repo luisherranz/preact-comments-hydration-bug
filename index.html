@@ -4,10 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
-    <style></style>
+    <style>
+      div.animation {
+        width: 150px;
+        height: 20px;
+        background: red;
+        position: relative;
+        animation: animate 3s infinite;
+        animation-direction: alternate;
+      }
+
+      @keyframes animate {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+        100% {
+          background: yellow;
+          left: 300px;
+          top: 0px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"><div><div class="first-div">First div</div><!-- main --><div class="second-div">Second div</div></div></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <div id="root"><div><div class="first-div animation">Before the comment</div><!-- main --><div class="second-div animation">After the comment</div></div></div>
+    <script type="module" src="/src/main.jsx"></script> </body>
 </html>
