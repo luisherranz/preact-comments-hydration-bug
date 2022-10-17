@@ -1,4 +1,5 @@
 import { hydrate } from "preact";
+import toVdom from "./vdom";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const obs = new MutationObserver((r) => {
 obs.observe(window.root, { childList: true, subtree: true });
 
 setTimeout(() => {
-  hydrate(<App />, window.root);
+  const vdom = toVdom(window.root)
+  hydrate(vdom.props.children, window.root);
   console.log("hydrated");
 
   records.push(...obs.takeRecords());
